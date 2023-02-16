@@ -35,7 +35,10 @@ jobs:
       #         echo 'export SEMGREP_JOB_URL=$CIRCLE_BUILD_URL' >> $BASH_ENV
       - run:
           name: "Semgrep scan"
-          command: semgrep ci
+          command: |
+              echo 'export SEMGREP_APP_TOKEN=$SEMGREP_APP_TOKEN' >> $BASH_ENV
+              echo 'export SEMGREP_REPO_NAME=$SEMGREP_REPO_NAME' >> $BASH_ENV  
+              semgrep ci
 workflows:
   main:
     jobs:
